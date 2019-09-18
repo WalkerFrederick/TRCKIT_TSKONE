@@ -6,7 +6,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl'
 import FormLabel from '@material-ui/core/FormLabel'
-import FormControlLabel from '@material-ui/core/FormControlLabel';import { Button } from '@material-ui/core';
+import FormControlLabel from '@material-ui/core/FormControlLabel';import { Button, StepLabel } from '@material-ui/core';
 import { editEmployee, addEmployee } from '../actions'
 
 
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
 function EmployeeForm(props) {
     const classes = useStyles();
     const [value, setValues] = React.useState({
-        index: props.index,
+        index: props.new === true ? props.count : props.index,
         name: props.name,
         salary: props.salary,
         role: props.role,
@@ -135,9 +135,12 @@ function EmployeeForm(props) {
 function mapDispatchToProps(dispatch) {
     return {
       editEmployee: Employee => dispatch(editEmployee(Employee)),
-      addEmployee: Employee => dispatch(addEmployee(Employee))
+      addEmployee: Employee => dispatch(addEmployee(Employee)),
     };
 }
+const mapStateToProps = state => {
+  return {count: state.count}
+};
   
 
-export default connect(null, mapDispatchToProps)(EmployeeForm)
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeForm)
