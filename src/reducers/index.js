@@ -1,24 +1,7 @@
 import { ADD_EMPLOYEE, EDIT_EMPLOYEE } from "../types";
 
 const initialState = {
-    employees: [{
-      index: 0,
-      name: "Jane Doe",
-      salary: "$70,000",
-      role: "employee",
-      receptionHours: null,
-      workplaceNumber: "404-222-2222",
-      lunchtime: "12:00pm"
-    },
-    {
-      index: 1,
-      name: "Jake Doe",
-      salary: "$70,000",
-      role: "management",
-      receptionHours: "1:00pm - 3:00pm",
-      workplaceNumber: null,
-      lunchtime: null
-    }]
+    employees: []
   };
 
   function rootReducer(state = initialState, action) {
