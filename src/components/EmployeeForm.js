@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import uuidv4 from 'uuid/v4'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
@@ -36,6 +37,7 @@ const useStyles = makeStyles(theme => ({
 function EmployeeForm(props) {
     const classes = useStyles();
     const [value, setValues] = React.useState({
+        uuid: uuidv4(),
         index: props.new === true ? props.count : props.index,
         name: props.name,
         salary: props.salary,
@@ -61,8 +63,9 @@ function EmployeeForm(props) {
 
       const handleSave = (event) => {
         event.preventDefault();
-
         if (props.new === true) {
+            value.index = props.employees.length
+            console.log(value)
             props.addEmployee(value)
         }
         else {
@@ -139,7 +142,7 @@ function mapDispatchToProps(dispatch) {
     };
 }
 const mapStateToProps = state => {
-  return {count: state.count}
+  return {employees: state.employees}
 };
   
 

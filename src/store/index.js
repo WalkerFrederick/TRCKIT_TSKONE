@@ -5,8 +5,7 @@ import {loadState, saveState} from '../localStorage/localStorage'
 
 const persistedState = loadState();
 const store = createStore(
-  rootReducer,
-  persistedState
+  rootReducer
 );
 store.subscribe(throttle(() => {
     saveState({

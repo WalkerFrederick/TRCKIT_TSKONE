@@ -1,24 +1,27 @@
 import { ADD_EMPLOYEE, EDIT_EMPLOYEE } from "../types";
 
 const initialState = {
-    employees: []
+    employees: [],
+    count: -1,
   };
 
   function rootReducer(state = initialState, action) {
     if (action.type === ADD_EMPLOYEE) {
-      console.log(state.employees.length)
-      action.payload.index = state.employees.length
-      return Object.assign({}, state, {
-        employees: state.employees.concat(action.payload)
-      });
+      console.log(state.employees)
+      //action.payload.index = state.employees.length
+      return {...state, 
+        employees: [...state.employees, action.payload]
+      };
     }
     else if (action.type === EDIT_EMPLOYEE) {
-      console.log(action.payload)
+      console.log(state)
       return { 
         ...state, 
         employees: state.employees.map(
-            (employee, i) => i === action.payload.index ? action.payload
-                                    : employee
+            (employee, i) => {
+              console.log(employee)
+              return (employee.index === action.payload.index ? action.payload
+                                    : employee)}
         )
      }
     }

@@ -7,7 +7,11 @@ import { connect } from "react-redux";
 import '../App.css';
 
 const mapStateToProps = state => {
-    return { employees: state.employees };
+    return { employees: state.employees.sort((a,b) => {
+      var nameA = a.name.toUpperCase();
+      var nameB = b.name.toUpperCase();
+      return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
+    }) };
   };
 
 function EmployeeTab({employees}) {
