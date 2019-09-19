@@ -63,13 +63,20 @@ function EmployeeForm(props) {
 
       const handleSave = (event) => {
         event.preventDefault();
-        if (props.new === true) {
+        if( value.name !== undefined && value.name.length > 0) {
+          if (props.new === true) {
             value.index = props.employees.length
             console.log(value)
             props.addEmployee(value)
+          }
+          else {
+              props.editEmployee(value)
+          }
         }
         else {
-            props.editEmployee(value)
+          console.error("Name must be provided");
+          setValues({error: "Name must be provided"})
+          
         }
       }
       
@@ -78,6 +85,7 @@ function EmployeeForm(props) {
     <form className={classes.container} noValidate autoComplete="off" onSubmit={handleSave}>
       <div className={classes.buttonSpacer}/>
       <Button MuiButton="sizeSmall" className={classes.saveButton} type="submit">Save</Button>
+      <span className="error">{value.error}</span>
       <TextField
         required
         id="standard-name"
