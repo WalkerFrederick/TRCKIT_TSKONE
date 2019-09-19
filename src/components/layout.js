@@ -92,6 +92,10 @@ function Layout() {
     setValue({ ...value, modalOpen: false })
   }
 
+  function modalCloseCallback() {
+    setValue({ ...value, modalOpen: false })
+  }
+
   return (
     <div className="Layout">
       <AppBar>
@@ -128,7 +132,8 @@ function Layout() {
         <Modal open={value.modalOpen} onClose={handleClose}>
             <div className="EmployeeModal">
             <div className="EmployeeEdit">
-                <EmployeeForm 
+                <EmployeeForm
+                callback={modalCloseCallback} 
                 index={"this.props.index"}
                 role={"employee"}
                 new={true}> 

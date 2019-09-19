@@ -25,6 +25,9 @@ class EmployeeItem extends React.Component {
   handleEditOpen = () => {
       this.setState({editOpen: true})
   }
+  modalCloseCallback() {
+    this.setState({ModalOpen: false, editOpen: false})
+  }
 
     render() {
         return (
@@ -52,6 +55,7 @@ class EmployeeItem extends React.Component {
                     : 
                     <div className="EmployeeEdit">
                         <EmployeeForm 
+                        callback={this.modalCloseCallback.bind(this)} 
                         index={this.props.index}
                         name={this.props.name}
                         salary={this.props.salary}

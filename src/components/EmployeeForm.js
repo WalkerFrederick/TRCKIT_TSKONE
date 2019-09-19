@@ -78,6 +78,7 @@ function EmployeeForm(props) {
           setValues({error: "Name must be provided"})
           
         }
+        props.callback()
       }
       
 
